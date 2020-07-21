@@ -19,12 +19,12 @@ for(let hours=0; hours<12; hours++){
 
 //create divs for and style classes for time, todo, save: col-md-3,8,1 respectively
     var colDivTime = $('<div>');
-    colDivTime.addClass('col-md-3 time-column bg-success');
+    colDivTime.addClass('col-md-3 time-column border-top border-bottom');
     var colDivEntry = $('<div>');
     colDivEntry.addClass('col-md-8 entry-column bg-danger');
     var colDivSave = $('<div>');
     colDivSave.addClass('col-md-1 save-column bg-secondary');
-    $(".row").append(colDivTime, colDivEntry, colDivSave);
+    $(planHourDiv).append(colDivTime, colDivEntry, colDivSave);
     
 }
 
