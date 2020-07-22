@@ -11,15 +11,16 @@ $('#currentDay').text(dayDateTime.format('[Today is] dddd, MMMM, Do, YYYY'));
     //parse JSON
 //create planner divs 12 add class of row and a styling class, add attribute for indexing
 var planContainer = $('.container');
-
+var hour = "";
 var calHours = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 for(var i=0; i < calHours.length; i++){
     var planHourDiv = $('<div>');
     planHourDiv.addClass('row plan-row');
     planHourDiv.attr('hours-index', calHours[i]);
-    planContainer.append(planHourDiv)
+    console.log('hours-index');
+    planContainer.append(planHourDiv);
 
-//create divs for and style classes for time, todo, save: col-md-3,8,1 respectively
+//create divs for and style classes for time, todo, save: col-md-1,10,1 respectively
     var colDivTime = $('<div>');
     colDivTime.addClass('col-md-1 time-column border-top border-bottom border-right d-flex align-items-center justify-content-center');
     var timeSpan = $('<span>');
@@ -27,19 +28,19 @@ for(var i=0; i < calHours.length; i++){
     
     var hourDisplay = $(planHourDiv).attr('hours-index');
     var amPm = "";
-    if (hourDisplay>=12) {
-      var hour = (hourDisplay)-12;
+    if (hourDisplay<12) {
+      hour = (hourDisplay);
+        amPm = "am";
+    } else if (hourDisplay>12) {
+        hour = (hourDisplay)-12;
         amPm = "pm";
-    } else if (hourDisplay==12) {
-        hour = (hourDisplay);
     } 
     else {
-            displayHour = (hourDisplay);
-            ampm = "am";
+            hour = 12;
+            amPm = "pm";
           };
     $(colDivTime).append(timeSpan);
-    timeSpan.text(hour, amPm);  
-    
+    timeSpan.text(hour +" "+ amPm);  
     $(planHourDiv).append(colDivTime);
     
     
