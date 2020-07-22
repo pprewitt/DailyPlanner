@@ -11,51 +11,51 @@ $('#currentDay').text(dayDateTime.format('[Today is] dddd, MMMM, Do, YYYY'));
     //parse JSON
 //create planner divs 12 add class of row and a styling class, add attribute for indexing
 var planContainer = $('.container');
-for(var hours=7; hours<20; hours++){
+
+var calHours = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+for(var i=0; i < calHours.length; i++){
     var planHourDiv = $('<div>');
     planHourDiv.addClass('row plan-row');
-    planHourDiv.attr('hours-index', hours);
+    planHourDiv.attr('hours-index', calHours[i]);
     planContainer.append(planHourDiv)
 
 //create divs for and style classes for time, todo, save: col-md-3,8,1 respectively
     var colDivTime = $('<div>');
-    colDivTime.addClass('col-md-3 time-column border-top border-bottom p-3');
-    
-
-
-    
+    colDivTime.addClass('col-md-1 time-column border-top border-bottom border-right d-flex align-items-center justify-content-center');
     var timeSpan = $('<span>');
     //cant get hours to populate properly
-    var hour = $(planHourDiv['hours-index']);
     
-    
-    var hourDisplay = 0;
+    var hourDisplay = $(planHourDiv).attr('hours-index');
     var amPm = "";
-    if (hour>12) {
-        hourDisplay = hour-12;
-        amPm = "am";
-    }else {
-            displayHour = hour;
+    if (hourDisplay>=12) {
+      var hour = (hourDisplay)-12;
+        amPm = "pm";
+    } else if (hourDisplay==12) {
+        hour = (hourDisplay);
+    } 
+    else {
+            displayHour = (hourDisplay);
             ampm = "am";
           };
-    timeSpan.text(hourDisplay, amPm);
+    $(colDivTime).append(timeSpan);
+    timeSpan.text(hour, amPm);  
     
     $(planHourDiv).append(colDivTime);
     
-    $(colDivTime).append(timeSpan);
+    
 
     var colDivEntry = $('<div>');
-    colDivEntry.addClass('col-md-8 entry-column bg-danger p-3');
+    colDivEntry.addClass('col-md-10 entry-column bg-success d-flex align-items-center justify-content-center');
     var entryInput = $('<input>');
-    entryInput.addClass('form-control');
+    entryInput.addClass('form-control inputtransparent');
     colDivEntry.append(entryInput);
     planHourDiv.append(colDivEntry);
 
 
     var colDivSave = $('<div>');
-    colDivSave.addClass('col-md-1 save-column bg-secondary p-3');
+    colDivSave.addClass('col-md-1 save-column bg-secondary d-flex align-items-center justify-content-center');
     var saveBtnIcon = $('<i>');
-    saveBtnIcon.addClass('far fa-save');      
+    saveBtnIcon.addClass('fa fa-save');      
     colDivSave.append(saveBtnIcon);
     planHourDiv.append(colDivSave);
 

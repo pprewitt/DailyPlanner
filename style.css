@@ -73,3 +73,10 @@ textarea{
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+.inputtransparent{
+  background-color:rgba(192,192,192,0.2) !important;
+  border: none;
+}
+.fa {
+  color: white;
+}
