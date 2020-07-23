@@ -12,6 +12,7 @@ $('#currentDay').text(dayDateTime.format('[Today is] dddd, MMMM, Do, YYYY'));
 //create planner divs 12 add class of row and a styling class, add attribute for indexing
 var planContainer = $('.container');
 var hour = "";
+var hourDisplay = "";
 var calHours = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 for(var i=0; i < calHours.length; i++){
     var planHourDiv = $('<div>');
@@ -35,8 +36,7 @@ for(var i=0; i < calHours.length; i++){
         hour = (hourDisplay)-12;
         amPm = "pm";
     } 
-    else {
-            hour = 12;
+    else {hour = 12;
             amPm = "pm";
           };
     $(colDivTime).append(timeSpan);
@@ -46,15 +46,24 @@ for(var i=0; i < calHours.length; i++){
     
 
     var colDivEntry = $('<div>');
-    colDivEntry.addClass('col-md-10 entry-column bg-success d-flex align-items-center justify-content-center');
+    var hourDisplay = $(planHourDiv).attr('hours-index');
+    colDivEntry.addClass('col-md-10 entry-column d-flex align-items-center justify-content-center');
     var entryInput = $('<input>');
     entryInput.addClass('form-control inputtransparent');
+    colDivEntry.attr('hours-index', calHours[i]);
+    
+    if (hourDisplay<moment().format('k')){
+        colDivEntry.addClass('bg-light'); 
+    } else if (hourDisplay>moment().format('k')){
+        colDivEntry.addClass('bg-success'); 
+    } else {colDivEntry.addClass('bg-danger');};
     colDivEntry.append(entryInput);
     planHourDiv.append(colDivEntry);
 
 
     var colDivSave = $('<div>');
     colDivSave.addClass('col-md-1 save-column bg-secondary d-flex align-items-center justify-content-center');
+    colDivSave.attr('hours-index', calHours[i]);
     var saveBtnIcon = $('<i>');
     saveBtnIcon.addClass('fa fa-save');      
     colDivSave.append(saveBtnIcon);
