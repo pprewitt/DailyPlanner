@@ -46,19 +46,21 @@ for(var i=0; i < calHours.length; i++){
     
 
     var colDivEntry = $('<div>');
-    var hourDisplay = $(planHourDiv).attr('hours-index');
+    hourDisplay = parseInt($(planHourDiv).attr('hours-index'));
     colDivEntry.addClass('col-md-10 entry-column d-flex align-items-center justify-content-center');
     var entryInput = $('<input>');
     entryInput.addClass('form-control inputtransparent');
     colDivEntry.attr('hours-index', calHours[i]);
     
-    if (hourDisplay<moment().format('k')){
+    if (hourDisplay < parseInt(moment().format('k'))){
+        colDivEntry.removeClass('bg-success');
         colDivEntry.addClass('bg-light'); 
-    } else if (hourDisplay>moment().format('k')){
+    } else if (hourDisplay > parseInt(moment().format('k'))){
+        colDivEntry.removeClass('bg-success');
         colDivEntry.addClass('bg-success'); 
     } else {colDivEntry.addClass('bg-danger');};
     colDivEntry.append(entryInput);
-    planHourDiv.append(colDivEntry);
+    planHourDiv.append(colDivEntry)
 
 
     var colDivSave = $('<div>');
