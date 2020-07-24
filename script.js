@@ -51,11 +51,11 @@ for(var i=0; i < calHours.length; i++){
             //style according to time
     var colDivEntry = $('<div>');
     hourDisplay = parseInt($(planHourDiv).attr('hours-index'));
-    colDivEntry.addClass('col-md-10 entry-column d-flex align-items-center justify-content-center input');
-    colDivEntry.attr('hours-index', calHours[i]);
+    colDivEntry.addClass('col-md-10 input entry-column d-flex align-items-center justify-content-center');
     var entryInput = $('<input>');
     entryInput.addClass('form-control inputtransparent');
     entryInput.attr('type', 'text');
+    
     entryInput.attr('hours-index', calHours[i]);
     // planHourDiv.attr('hours-index', calHours[i]);
     
@@ -76,39 +76,30 @@ for(var i=0; i < calHours.length; i++){
     colDivSave.addClass('col-md-1 save-column bg-secondary d-flex align-items-center justify-content-center');
     colDivSave.attr('hours-index', calHours[i]);
     var saveBtnIcon = $('<i>');
-    saveBtnIcon.addClass('fa fa-save saveBtn');  
-    saveBtnIcon.attr('hours-index', calHours[i]);    
+    saveBtnIcon.addClass('fa fa-save saveBtn');      
     colDivSave.append(saveBtnIcon);
     planHourDiv.append(colDivSave);
+    saveBtnIcon.attr('hours-index', calHours[i]); 
 
     
 };
-var thisPlanHour ={entry: toDo, index: whenToDo};
-var toDo ;
-            var whenToDo ;
+
+
 $('.saveBtn').click(function(){
     event.preventDefault();
-    console.log('saved');
-    var saveIndex = $(this).attr('hours-index');
-    // console.log(saveIndex)
-    
-    $('.container').children('.plan-row').each(function(){
-        if (planHourDiv.attr('hours-index')===saveIndex){
-        console.log('hours-index');
-        
-            //     toDo = entryInput.val()
-        //     whenToDo = entryInput.attr('hours-index');
-            
-    
-        // var planHoursArray = JSON.parse(localStorage.getItem('planHoursArray')) || [];
-        
-        // planHoursArray.push(thisPlanHour);
-        // localStorage.setItem('planHoursArray', JSON.stringify(planHoursArray)); 
-            
-        };
-    })
+    var inputIndex = $(this).attr('hours-index');
+    console.log(inputIndex);
 
-   
+    $("input[('hours-index')=(inputIndex)]" )
+    // var t0oDo = $('#input').val();
+    // var whenToDo = $('#input').attr('hours-index');
+    // console.log(whenToDo);
+    // console.log("saved");
+    // var thisPlanHour ={entry: toDo, index: whenToDo};
+    //     var planHoursArray = JSON.parse(localStorage.getItem('planHoursArray')) || [];
+        
+    //     planHoursArray.push(thisPlanHour);
+    //     localStorage.setItem('planHoursArray', JSON.stringify(planHoursArray));
 
     }); 
 
