@@ -88,7 +88,7 @@ $('.saveBtn').click(function(){
     var saveIndex = $(this).attr('hours-index');
     
     $.each(entryInput, function(){
-        if ($(entryInput).attr('hours-index')===saveIndex){
+        if (($(entryInput).attr('hours-index'))===saveIndex){
             var toDo = $(inputIndex).val()
             var whenToDo = $(inputIndex).attr('hours-index');
             var thisPlanHour ={entry: toDo, index: whenToDo};
