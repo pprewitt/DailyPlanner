@@ -52,6 +52,7 @@ for(var i=0; i < calHours.length; i++){
     var colDivEntry = $('<div>');
     hourDisplay = parseInt($(planHourDiv).attr('hours-index'));
     colDivEntry.addClass('col-md-10 entry-column d-flex align-items-center justify-content-center input');
+    colDivEntry.attr('hours-index', calHours[i]);
     var entryInput = $('<input>');
     entryInput.addClass('form-control inputtransparent');
     entryInput.attr('type', 'text');
@@ -75,28 +76,34 @@ for(var i=0; i < calHours.length; i++){
     colDivSave.addClass('col-md-1 save-column bg-secondary d-flex align-items-center justify-content-center');
     colDivSave.attr('hours-index', calHours[i]);
     var saveBtnIcon = $('<i>');
-    saveBtnIcon.addClass('fa fa-save saveBtn');      
+    saveBtnIcon.addClass('fa fa-save saveBtn');  
+    saveBtnIcon.attr('hours-index', calHours[i]);    
     colDivSave.append(saveBtnIcon);
     planHourDiv.append(colDivSave);
 
     
 };
-
+var thisPlanHour ={entry: toDo, index: whenToDo};
+var toDo ;
+            var whenToDo ;
 $('.saveBtn').click(function(){
     event.preventDefault();
     console.log('saved');
     var saveIndex = $(this).attr('hours-index');
+    // console.log(saveIndex)
     
-    $.each(entryInput, function(){
-        if (($(entryInput).attr('hours-index'))===saveIndex){
-            var toDo = $(inputIndex).val()
-            var whenToDo = $(inputIndex).attr('hours-index');
-            var thisPlanHour ={entry: toDo, index: whenToDo};
-    
-        var planHoursArray = JSON.parse(localStorage.getItem('planHoursArray')) || [];
+    $('.container').children('.plan-row').each(function(){
+        if (planHourDiv.attr('hours-index')===saveIndex){
+        console.log('hours-index');
         
-        planHoursArray.push(thisPlanHour);
-        localStorage.setItem('planHoursArray', JSON.stringify(planHoursArray)); 
+            //     toDo = entryInput.val()
+        //     whenToDo = entryInput.attr('hours-index');
+            
+    
+        // var planHoursArray = JSON.parse(localStorage.getItem('planHoursArray')) || [];
+        
+        // planHoursArray.push(thisPlanHour);
+        // localStorage.setItem('planHoursArray', JSON.stringify(planHoursArray)); 
             
         };
     })
