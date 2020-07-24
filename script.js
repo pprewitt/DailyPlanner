@@ -6,7 +6,6 @@ var dayDateTime = moment();
 $('#currentDay').text(dayDateTime.format('[Today is] dddd, MMMM, Do, YYYY'));
 
 //get save icon
-//get 
 //get localstoragetodos
     //parse JSON
 //create planner divs 12 add class of row and a styling class, add attribute for indexing
@@ -22,11 +21,14 @@ for(var i=0; i < calHours.length; i++){
     planContainer.append(planHourDiv);
 
 //create divs for and style classes for time, todo, save: col-md-1,10,1 respectively
+
+//build col-md-1 for time
+            
     var colDivTime = $('<div>');
     colDivTime.addClass('col-md-1 time-column border-top border-bottom border-right d-flex align-items-center justify-content-center');
     var timeSpan = $('<span>');
-    //cant get hours to populate properly
     
+    //populate time by row
     var hourDisplay = $(planHourDiv).attr('hours-index');
     var amPm = "";
     if (hourDisplay<12) {
@@ -44,14 +46,19 @@ for(var i=0; i < calHours.length; i++){
     $(planHourDiv).append(colDivTime);
     
     
-
+//build col-md-10 for todo
+            //insert input form
+            //style according to time
     var colDivEntry = $('<div>');
     hourDisplay = parseInt($(planHourDiv).attr('hours-index'));
-    colDivEntry.addClass('col-md-10 entry-column d-flex align-items-center justify-content-center');
+    colDivEntry.addClass('col-md-10 entry-column d-flex align-items-center justify-content-center input');
     var entryInput = $('<input>');
     entryInput.addClass('form-control inputtransparent');
-    colDivEntry.attr('hours-index', calHours[i]);
+    entryInput.attr('type', 'text');
+    entryInput.attr('hours-index', calHours[i]);
+    // planHourDiv.attr('hours-index', calHours[i]);
     
+    //styling color according to time
     if (hourDisplay < parseInt(moment().format('k'))){
         colDivEntry.removeClass('bg-success');
         colDivEntry.addClass('bg-light'); 
@@ -60,30 +67,47 @@ for(var i=0; i < calHours.length; i++){
         colDivEntry.addClass('bg-success'); 
     } else {colDivEntry.addClass('bg-danger');};
     colDivEntry.append(entryInput);
-    planHourDiv.append(colDivEntry)
+    planHourDiv.append(colDivEntry);
 
-
+//build col-md-1 for save; color bg-info
+            //insert save icon
     var colDivSave = $('<div>');
     colDivSave.addClass('col-md-1 save-column bg-secondary d-flex align-items-center justify-content-center');
     colDivSave.attr('hours-index', calHours[i]);
     var saveBtnIcon = $('<i>');
-    saveBtnIcon.addClass('fa fa-save');      
+    saveBtnIcon.addClass('fa fa-save saveBtn');      
     colDivSave.append(saveBtnIcon);
     planHourDiv.append(colDivSave);
 
-    // , colDivEntry, colDivSave
     
-}
+};
 
-        //build col-md-3 for time
-            //populate time
-        //build col-md-8 for todo
-            //insert input form
-        //build col-md-1 for save; color bg-info
-            //insert save icon
-//rows change color style based on time: past bg-secondary, current bg-danger, future bg-success
+$('.saveBtn').click(function(){
+    event.preventDefault();
+    console.log('saved');
+    var saveIndex = $(this).attr('hours-index');
+    
+    $.each(entryInput, function(){
+        if ($(entryInput).attr('hours-index')===saveIndex){
+            var toDo = $(inputIndex).val()
+            var whenToDo = $(inputIndex).attr('hours-index');
+            var thisPlanHour ={entry: toDo, index: whenToDo};
+    
+        var planHoursArray = JSON.parse(localStorage.getItem('planHoursArray')) || [];
+        
+        planHoursArray.push(thisPlanHour);
+        localStorage.setItem('planHoursArray', JSON.stringify(planHoursArray)); 
+            
+        };
+    })
 
-//save input to array function stringify JSON
+   
 
+    }); 
+
+//make the icon a save button, onclick event takes entry div content andd saves input to array stringify JSON
+
+
+//populate planner with saved inputs parse JSON
 //if 
 });
