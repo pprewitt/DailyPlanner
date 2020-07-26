@@ -1,17 +1,16 @@
+//make sure document loads before js starts up
 $(document).ready(function() {
-//get all stored hour and populate to HTML or create array if new
+
+//get all stored hours or make array for use below
 var planHoursArray = JSON.parse(localStorage.getItem('planHoursArray')) || [];
 
 //get date and day and place in header
 var dayDateTime = moment();
 $('#currentDay').text(dayDateTime.format('[Today is] dddd, MMMM, Do, YYYY'));
 
-//get save icon
-//get localstoragetodos
-    //parse JSON
-//create planner divs 12 add class of row and a styling class, add attribute for indexing
+//get container to add content to
 var planContainer = $('.container');
-
+//loop to build rows, hour divs, entry divs, save divs, assign indexes to link to functions
 for(var hour = 7; hour < 19; hour++){
     let index = hour-7;
     var planHourDiv = $('<div>');
@@ -20,7 +19,7 @@ for(var hour = 7; hour < 19; hour++){
     console.log('hours-index');
     planContainer.append(planHourDiv);
 
-//create divs for and style classes for time, todo, save: col-md-1,10,1 respectively
+
 
 //build col-md-1 for time
             
@@ -28,7 +27,7 @@ for(var hour = 7; hour < 19; hour++){
     colDivTime.addClass('col-md-1 time-column border-top border-bottom border-right d-flex align-items-center justify-content-center');
     var timeSpan = $('<span>');
     
-    //populate time by row
+    //populate time display by row format ampm and use 12 hour time
     var hourDisplay = 0;
     var amPm = "";
     if (hour < 12) {
@@ -46,7 +45,7 @@ for(var hour = 7; hour < 19; hour++){
     $(planHourDiv).append(colDivTime);
     
     
-//build col-md-10 for todo
+//build col-md-10 for todo entry form
             //insert input form
             //style according to time
     var colDivEntry = $('<div>');
@@ -59,6 +58,7 @@ for(var hour = 7; hour < 19; hour++){
     entryInput.attr('hours-index', index);
     // planHourDiv.attr('hours-index', calHours[i]);
     
+    //assign inputs content from localstorage
     entryInput.val(planHoursArray[index]);
 
     //styling color according to time
@@ -78,7 +78,7 @@ for(var hour = 7; hour < 19; hour++){
     colDivSave.addClass('col-md-1 save-column bg-secondary d-flex align-items-center justify-content-center');
     colDivSave.attr('save-id', index);
     var saveBtnIcon = $('<i>');
-    saveBtnIcon.addClass('fa fa-save saveBtn');      
+    saveBtnIcon.addClass('fa fa-save saveBtn btn btn-secondary');      
     colDivSave.append(saveBtnIcon);
     planHourDiv.append(colDivSave);
     saveBtnIcon.attr('save-id', index); 
@@ -87,7 +87,7 @@ for(var hour = 7; hour < 19; hour++){
 };
 
 
-
+//save function links save button to input entry
 $('.saveBtn').click(function(){
     event.preventDefault();
     let index = $(this).attr('save-id');
@@ -103,9 +103,4 @@ $('.saveBtn').click(function(){
 
     }); 
 
-//make the icon a save button, onclick event takes entry div content andd saves input to array stringify JSON
-
-
-//populate planner with saved inputs parse JSON
-//if 
 });
