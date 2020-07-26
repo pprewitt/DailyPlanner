@@ -14,15 +14,15 @@ I indexed this poorly to start and then just kept trying to support a poor index
 
 ## Deployment
 
-This site is deployed within github pages (https://pprewitt.github.io/codingQuiz/)
+This site is deployed within github pages (https://pprewitt.github.io/DailyPlanner/)
 
 ## Screenshot
-![screenshot](codingQuiz.png?raw=true)
+![screenshot](screenshot.png?raw=true)
 
 
 ## Helpful Resources
-[JamesQQuick Quiz App Save High Scores Local Storage Tutorial](https://www.youtube.com/watch?v=DFhmNLKwwGw&t=389s)
-[Olayinka and James on Sorting Arrays](https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/ )
+[Tania Rascia Local Storage Tips](https://www.taniarascia.com/how-to-use-local-storage-with-javascript/)
+[FlavioScope Moment.js tips](https://flaviocopes.com/momentjs/ )
 
 ## Authors
 
